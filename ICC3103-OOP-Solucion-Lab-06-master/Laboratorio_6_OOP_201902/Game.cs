@@ -6,9 +6,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary; // Para serializar
+
 
 namespace Laboratorio_6_OOP_201902
 {
+    [Serializable]
     public class Game
     {
         //Constantes
@@ -22,6 +25,10 @@ namespace Laboratorio_6_OOP_201902
         private Board boardGame;
         internal int turn;
 
+        //Para guardar
+
+        private System.IO.FileStream saver;
+       
         //Constructor
         public Game()
         {
@@ -37,6 +44,8 @@ namespace Laboratorio_6_OOP_201902
             players[0].Board = boardGame;
             players[1].Board = boardGame;
             turn = 0;
+            
+
         }
         //Propiedades
         public Player[] Players
@@ -112,6 +121,9 @@ namespace Laboratorio_6_OOP_201902
         {
             int userInput = 0;
             int firstOrSecondUser = ActivePlayer.Id == 0 ? 0 : 1;
+
+            
+            
             
 
             //turno 0 o configuracion
@@ -140,6 +152,11 @@ namespace Laboratorio_6_OOP_201902
                     //Mostar opciones, cambiar carta o pasar
                     Visualization.ShowListOptions(new List<string>() { "Change Card", "Pass" }, "Change 3 cards or ready to play:");
                     userInput = Visualization.GetUserInput(1);
+
+                    // AHORA DEBO GUARDAR EL ESTADO DEL JUEGO
+                    
+
+
                     if (userInput == 0)
                     {
                         Visualization.ClearConsole();
