@@ -346,27 +346,27 @@ namespace Laboratorio_7_OOP_201902
         // AHORA DEBO GUARDAR EL ESTADO DEL JUEGO
         public void Save()
         {
-            FileStream gameState = new FileStream("gameStateDecks.txt", FileMode.Create);
+            FileStream gameState = new FileStream("gameStateDecks.txt", FileMode.Create, FileAccess.Write);
             BinaryFormatter saver1 = new BinaryFormatter();
             saver1.Serialize(gameState, this.decks);
             gameState.Close();
 
-            FileStream gameState2 = new FileStream("gameStateBoard.txt", FileMode.Create);
+            FileStream gameState2 = new FileStream("gameStateBoard.txt", FileMode.Create, FileAccess.Write);
             BinaryFormatter saver2 = new BinaryFormatter();
             saver1.Serialize(gameState, this.boardGame);
             gameState.Close();
 
-            FileStream gameState3 = new FileStream("gameStateCaptain.txt", FileMode.Create);
+            FileStream gameState3 = new FileStream("gameStateCaptain.txt", FileMode.Create, FileAccess.Write);
             BinaryFormatter saver3 = new BinaryFormatter();
             saver1.Serialize(gameState, this.captains);
             gameState.Close();
 
-            FileStream gameState4 = new FileStream("gameStatePlayer.txt", FileMode.Create);
+            FileStream gameState4 = new FileStream("gameStatePlayer.txt", FileMode.Create, FileAccess.Write);
             BinaryFormatter saver4 = new BinaryFormatter();
             saver1.Serialize(gameState, this.players);
             gameState.Close();
 
-            FileStream gameState5 = new FileStream("gameStateActiveP.txt", FileMode.Create);
+            FileStream gameState5 = new FileStream("gameStateActiveP.txt", FileMode.Create, FileAccess.Write);
             BinaryFormatter saver5 = new BinaryFormatter();
             saver1.Serialize(gameState, this.activePlayer);
             gameState.Close();
@@ -377,20 +377,30 @@ namespace Laboratorio_7_OOP_201902
         public void loadState()
         {
             //Deserializo la raiz
-            FileStream gameState1 = new FileStream("gameStateDecks.txt", FileMode.Open);
+            FileStream gameState1 = new FileStream("gameStateDecks.txt", FileMode.Open, FileAccess.Read);
             BinaryFormatter saver1 = new BinaryFormatter();
             this.decks = (List<Deck>)saver1.Deserialize(gameState1);
             gameState1.Close();
 
-            FileStream gameState2 = new FileStream("gameStateDecks.txt", FileMode.Open);
+            FileStream gameState2 = new FileStream("gameStateBoard.txt", FileMode.Open, FileAccess.Read);
             BinaryFormatter saver2 = new BinaryFormatter();
-            this.decks = (List<Deck>)saver2.Deserialize(gameState1);
+            this.boardGame = (Board)saver2.Deserialize(gameState2);
             gameState2.Close();
 
-            FileStream gameState3 = new FileStream("gameStateDecks.txt", FileMode.Open);
+            FileStream gameState3 = new FileStream("gameStateCaptain.txt", FileMode.Open, FileAccess.Read);
             BinaryFormatter saver3 = new BinaryFormatter();
-            this.decks = (List<Deck>)saver3.Deserialize(gameState3);
+            this.captains = (List<SpecialCard>)saver3.Deserialize(gameState3);
             gameState3.Close();
+
+            FileStream gameState4 = new FileStream("gameStatePlayer.txt", FileMode.Open, FileAccess.Read);
+            BinaryFormatter saver4 = new BinaryFormatter();
+            this.players = (Player[])saver4.Deserialize(gameState4);
+            gameState4.Close();
+
+            FileStream gameState5 = new FileStream("gameStateActiveP.txt", FileMode.Open, FileAccess.Read);
+            BinaryFormatter saver5 = new BinaryFormatter();
+            this.activePlayer = (Player)saver5.Deserialize(gameState5);
+            gameState5.Close();
 
 
 
