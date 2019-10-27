@@ -375,6 +375,7 @@ namespace Laboratorio_7_OOP_201902
             // De esta forma guardo 
         }
         public void loadState()
+            //Asi cargo
         {
             //Deserializo la raiz
             FileStream gameState1 = new FileStream("gameStateDecks.txt", FileMode.Open, FileAccess.Read);
