@@ -35,6 +35,19 @@ namespace Laboratorio_7_OOP_201902.Static
             for (int i = 0; i<decks.Count; i++)
             {
                 Console.WriteLine($"({i}) Deck {i+1}");
+                foreach (Card card in decks[i].Cards)
+                {
+                    Console.WriteLine("# cards:" + decks[i].GetCharachteristics()[0]);
+                    Console.WriteLine("# Cards: " + decks[i].GetCharachteristics()[1]);
+                    Console.WriteLine("# RangeCards: " + decks[i].GetCharachteristics()[2]);
+                    Console.WriteLine("# LongRangeCards: " + decks[i].GetCharachteristics()[3]);
+                    Console.WriteLine("# BuffCards: " + decks[i].GetCharachteristics()[4]);
+                    Console.WriteLine("# WeatherCards: " + decks[i].GetCharachteristics()[5]);
+                    Console.WriteLine("# MeleeCards: " + decks[i].GetCharachteristics()[6]);
+                    Console.WriteLine("# RangeCards: " + decks[i].GetCharachteristics()[7]);
+                    Console.WriteLine("# LongRangeCards: " + decks[i].GetCharachteristics()[8]);
+                    Console.WriteLine("# Total Attack points : " + decks[i].GetCharachteristics()[9]);
+                }
             }
         }
         public static void ShowCaptains(List<SpecialCard> captains)
