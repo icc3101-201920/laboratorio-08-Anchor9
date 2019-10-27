@@ -1,9 +1,11 @@
-﻿using Laboratorio_6_OOP_201902.Cards;
+﻿using Laboratorio_7_OOP_201902.Cards;
+using Laboratorio_7_OOP_201902.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace Laboratorio_6_OOP_201902
+namespace Laboratorio_7_OOP_201902
 {
     public class Deck
     {
@@ -25,6 +27,8 @@ namespace Laboratorio_6_OOP_201902
         {
             cards.RemoveAt(cardId);
         }
+
+        
 
         public void Shuffle()
         {

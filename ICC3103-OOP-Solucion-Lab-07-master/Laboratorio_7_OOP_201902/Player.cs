@@ -1,12 +1,15 @@
-﻿using Laboratorio_6_OOP_201902.Cards;
-using Laboratorio_6_OOP_201902.Enums;
+﻿using Laboratorio_7_OOP_201902.Cards;
+using Laboratorio_7_OOP_201902.Enums;
+using Laboratorio_7_OOP_201902.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Laboratorio_6_OOP_201902
+namespace Laboratorio_7_OOP_201902
+
 {
-    public class Player
+    [Serializable]
+    public class Player: IAttackPoints
     {
         //Constantes
         private const int LIFE_POINTS = 2;
@@ -18,7 +21,6 @@ namespace Laboratorio_6_OOP_201902
         //Atributos
         private int id;
         private int lifePoints;
-        private int attackPoints;
         private Deck deck;
         private Hand hand;
         private Board board;
@@ -28,7 +30,6 @@ namespace Laboratorio_6_OOP_201902
         public Player()
         {
             LifePoints = LIFE_POINTS;
-            AttackPoints = START_ATTACK_POINTS;
             Deck = new Deck();
             Hand = new Hand();
             Id = idCounter++;
@@ -47,17 +48,7 @@ namespace Laboratorio_6_OOP_201902
                 this.lifePoints = value;
             }
         }
-        public int AttackPoints
-        {
-            get
-            {
-                return this.attackPoints;
-            }
-            set
-            {
-                this.attackPoints = value;
-            }
-        }
+       
         public Deck Deck
         {
             get
@@ -160,6 +151,15 @@ namespace Laboratorio_6_OOP_201902
             board.AddCard(new SpecialCard(Captain.Name, Captain.Type, Captain.Effect), Id);
         }
 
+        /*
+        public void Swap<T>(ref T a, ref T b)
+        {
+            T temp;
+            temp = a;
+            a = b;
+            b = temp;
+        }
+        */
 
         public Card CreateTempCard(int cardId, bool useDeck = true)
         {
@@ -177,5 +177,15 @@ namespace Laboratorio_6_OOP_201902
             }
         }
 
+        public int[] GetAttackPoints(EnumType line = EnumType.None)
+        {
+            EnumType[] enums = new EnumType[3] { EnumType.melee, EnumType.range, EnumType.longRange };
+            int attackPoints = 0;
+            foreach (EnumType e in enums)
+            {
+                attackPoints += board.GetAttackPoints(e)[Id];
+            }
+            return new int[] { attackPoints };
+        }
     }
 }

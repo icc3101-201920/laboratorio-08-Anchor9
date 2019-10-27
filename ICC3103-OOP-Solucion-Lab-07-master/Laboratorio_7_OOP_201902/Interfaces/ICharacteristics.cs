@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Laboratorio_6_OOP_201902
+namespace Laboratorio_7_OOP_201902.Interfaces
 {
     interface ICharacteristics
     {
+        List<string> GetCharacteristics();
     }
 }
